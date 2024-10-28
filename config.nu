@@ -8,6 +8,11 @@ alias open = ^open
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 $env.GPG_TTY = (tty)
 
+$env.path = (
+    $env.path
+    | prepend ~/.local/go/bin
+)
+
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
