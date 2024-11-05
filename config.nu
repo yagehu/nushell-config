@@ -7,9 +7,11 @@ alias open = ^open
 
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 $env.GPG_TTY = (tty)
+gpg-connect-agent updatestartuptty /bye out> /dev/null
 
 $env.path = (
     $env.path
+    | prepend ~/.local/bin
     | prepend ~/.local/go/bin
 )
 
