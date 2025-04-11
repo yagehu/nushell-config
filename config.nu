@@ -4,6 +4,7 @@
 
 alias nu-open = open
 alias open = ^open
+alias s = kitten ssh
 
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 $env.GPG_TTY = (tty)
@@ -11,8 +12,11 @@ gpg-connect-agent updatestartuptty /bye out> /dev/null
 
 $env.path = (
     $env.path
+    | prepend ~/.local/verus
     | prepend ~/.local/bin
     | prepend ~/.local/go/bin
+    | prepend ~/.ghcup/bin
+    | prepend /Library/TeX/texbin
 )
 
 # For more information on defining custom themes, see
@@ -227,8 +231,7 @@ $env.config = {
     }
 
     filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
+        unit: "metric" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
     }
 
     cursor_shape: {
